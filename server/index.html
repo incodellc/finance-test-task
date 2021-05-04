@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Quote Stream
+        </title>
+    	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+    	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.js"></script>
+        <script type="text/javascript" src="http://localhost:4000/socket.io/socket.io.js"></script>
+    </head>
+    <script type="text/javascript">
+        'use strict';
+        $(document).ready(function() {
+            const socket = io.connect('http://localhost:4000');
+            socket.emit('start');
+            socket.on('ticker', function(response) {
+                const res = Array.isArray(response) ? response : [response];
+                const json = res.map(item => JSON.stringify(item)).join('\n');
+                const data = $(`<pre>${json}</pre><hr />`);
+                $('#quotes').append(data);
+                $('html, body').animate({ scrollTop: $(document).height() }, 100);
+                $(data).show('slide', { direction: 'up' }, 300);
+                $(data).effect('highlight', {}, 1500);
+            });
+        });
+    </script>
+    <body>
+        <div id="quotes"></div>
+    </body>
+</html>

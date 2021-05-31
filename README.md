@@ -13,15 +13,16 @@ Requirements:
 
 You can get some ideas how your application may look like on the [Google Finance](https://www.google.com/finance/) page.
 
-As a bonus you can implement:
+As a bonus you can implement (please describe implemented bonus functionality in this file):
 - any additional visual effects to highlight positive or negative changes in the prices
 - the possibility to switch on/off tickers by user
 - the possibility to specify interval time by user
+- the possibility to add/remove ticker from watching group
+- any additional functionality you consider useful
 
 You should use the next technologies:
 - React (preferable with hooks)
-- Redux
-- Redux-Thunk or any other Redux middleware you are familiar
+- Redux (with Redux-Thunk or any other Redux middleware you are familiar) or any other state-manager library you want
 - Socket.io - to connect to the service
 - any UI library you want, or you can use just pure CSS
 - Testing Library
@@ -38,7 +39,7 @@ We will assess the next parts:
 2. ```cd server```
 3. ```npm install``` or ```yarn install```
 4. ```npm run start``` or ```yarn start```
-5. You can visit [http://localhost:4000](http://localhost:4000) to check that the service is working correctly and inspect the data it produces. 
+5. You can visit [http://localhost:4000](http://localhost:4000) to check that the service is working correctly and inspect the data it produces.
 
 ## Run your application
 1. Open a new bash shell

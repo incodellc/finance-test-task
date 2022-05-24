@@ -2,14 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { configureStore } from "@reduxjs/toolkit";
 import store from "./redux";
 import { Provider } from "react-redux";
-import { Normalize } from "styled-normalize";
+import Global from "./style";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Normalize />
+    <Global />
     <App />
   </Provider>,
   document.getElementById("root")

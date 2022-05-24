@@ -40,13 +40,12 @@ const Wrapper = styled.div`
 `;
 
 const RingSpinner = styled.div`
-  box-sizing: border-box;
   display: block;
   position: absolute;
   width: 20px;
   height: 20px;
   margin: 4px;
-  border: 4px solid ${(p) => p.color};
+  border: 4px solid white;
   border-radius: 50%;
   animation: ${(p) => motion(p)} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: white transparent transparent transparent;
@@ -69,9 +68,13 @@ function Loader({ type }) {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          height="100vh"
+          position="fixed"
+          top="0"
+          bottom="0"
+          left="0"
+          right="0"
         >
-          <Spinner />
+          <Spinner aria-busy="true" role="status" />
         </Box>
       );
       break;
@@ -79,7 +82,7 @@ function Loader({ type }) {
     default:
       return (
         <Wrapper>
-          <RingSpinner></RingSpinner>
+          <RingSpinner aria-busy="true" role="status"></RingSpinner>
         </Wrapper>
       );
       break;

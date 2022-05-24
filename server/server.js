@@ -57,6 +57,7 @@ function trackTickers(socket, time) {
     getQuotes(socket);
   }, time || FETCH_INTERVAL);
 
+  //clear interval when updating FETCH_INTERVAL
   socket.once("start", function () {
     clearInterval(timer);
   });

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { socket } from "../../../socket";
 import Box from "../../Common/Box";
 import Button from "../../Common/Button";
 import styled from "styled-components";
@@ -13,7 +12,7 @@ const StyledInput = styled.input`
   outline-color: var(--main);
 `;
 
-export default function TimerForm() {
+export default function TimerForm({ socket }) {
   const [timer, setTimer] = useState(5000);
   return (
     <Box mb="24px">
@@ -32,7 +31,9 @@ export default function TimerForm() {
           value={timer}
           type="number"
           step={100}
-          onChange={({ target }) => setTimer(target.value)}
+          onChange={({ target }) => {
+            setTimer(+target.value);
+          }}
         ></StyledInput>
         <Button ml="24px" disabled={!socket.connected}>
           {copy.submit}

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./components/Common/Loader";
 import {
@@ -6,7 +6,6 @@ import {
   unSubscribeToTicker,
   reconnectToTicker,
 } from "./redux";
-import { socket } from "./socket";
 import Box from "./components/Common/Box";
 import Table from "./components/Common/Table";
 import moment from "moment";
@@ -14,9 +13,9 @@ import { ReactComponent as ArrowUp } from "./Images/arrowUp.svg";
 import { ReactComponent as ArrowDown } from "./Images/arrowDown.svg";
 import copy from "./copy";
 import Button from "./components/Common/Button";
-import TimerForm from "./components/Main/TImerForm";
+import TimerForm from "./components/Main/TimerForm";
 
-function App() {
+function App({ socket }) {
   const dispatch = useDispatch();
   const { stocks, loading } = useSelector((state) => state.stocks);
   const columns = [
@@ -25,14 +24,18 @@ function App() {
     { field: "last_trade_time", headerName: copy.table.columns.tradeTime },
     { field: "differance", headerName: copy.table.columns.differance },
   ];
-  const rows = stocks.map(({ ticker, price, last_trade_time, differance }) => {
-    return {
-      companyName: copy[ticker],
-      price: `${price} $`,
-      last_trade_time: moment(last_trade_time).format("DD MMMM HH:mm"),
-      differance: differance,
-    };
-  });
+  const rows = useMemo(
+    () =>
+      stocks.map(({ ticker, price, last_trade_time, differance }) => {
+        return {
+          companyName: copy[ticker],
+          price: `${price} $`,
+          last_trade_time: moment(last_trade_time).format("DD MMMM HH:mm"),
+          differance: differance,
+        };
+      }),
+    [stocks]
+  );
 
   useEffect(() => {
     dispatch(subscribeToTicker(socket));
@@ -70,7 +73,7 @@ function App() {
             </Box>
           </Button>
         </Box>
-        <TimerForm />
+        <TimerForm socket={socket} />
         <Table
           columns={columns}
           rows={rows}

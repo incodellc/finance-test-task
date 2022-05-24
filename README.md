@@ -14,9 +14,9 @@ Requirements:
 You can get some ideas how your application may look like on the [Google Finance](https://www.google.com/finance/) page.
 
 As a bonus you can implement (please describe implemented bonus functionality in this file):
-- any additional visual effects to highlight positive or negative changes in the prices
-- the possibility to switch on/off tickers by user
-- the possibility to specify interval time by user
+- any additional visual effects to highlight positive or negative changes in the prices (added differance column in table with up and down arrow describing changes between ticks)
+- the possibility to switch on/off tickers by user (add button to disconnect from socket and reconnect to it)
+- the possibility to specify interval time by user (added form then when submiting change interval time)
 - the possibility to add/remove ticker from watching group
 - any additional functionality you consider useful
 

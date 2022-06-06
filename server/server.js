@@ -68,5 +68,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 server.listen(port, () => {
-   console.log(`Streaming service is running on http://localhost:${PORT}`)
+   console.log(`Streaming service is running on http://localhost:${port}`)
 })

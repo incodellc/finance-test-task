@@ -1,7 +1,7 @@
 import { CONNECT, DISCONNECT } from './types'
 import io from 'socket.io-client'
 import { getQuotes } from './quotesActions'
-const socket = io.connect('http://localhost:4000')
+const socket = io.connect('https://finance-tickers.herokuapp.com/')
 
 export const connectToSocket = fetchInterval => dispatch => {
    socket.connect()

@@ -19,3 +19,29 @@
 -  Socket.io
 -  TailwindCSS
 -  Basic ReactJS testing library
+
+---
+
+## Run app:
+
+To run full app -
+
+```
+npm start
+```
+
+To run only client -
+
+```
+cd client
+npm i
+npm start
+```
+
+To run only server -
+
+```
+cd server
+npm i
+npm start
+```

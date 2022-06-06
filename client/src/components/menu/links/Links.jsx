@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import s from '../../../styles/menu/links.module.scss'
 
 const Links = ({ setter }) => {
-   const { pathname } = useLocation()
    const allLinks = useRef([])
    allLinks.current = []
 

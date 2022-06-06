@@ -12,7 +12,7 @@ app.use(cors())
 
 const socketServer = io(server, { cors: { origin: '*' } })
 
-const PORT = process.env.PORT || 4000
+const port = process.env.PORT || 4000
 
 const tickers = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA']
 
@@ -67,6 +67,6 @@ if (process.env.NODE_ENV === 'production') {
    })
 }
 
-server.listen(PORT, () => {
+server.listen(port, () => {
    console.log(`Streaming service is running on http://localhost:${PORT}`)
 })

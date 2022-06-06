@@ -1,5 +1,7 @@
 # React test-task (tickers app)
 
+## [Link](https://finance-tickers.herokuapp.com/)
+
 -  Add visual effects to highlight positive or negative changes in the prices
 
 -  Add possibility to switch on/off tickers by user

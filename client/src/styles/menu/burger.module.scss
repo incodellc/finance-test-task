@@ -1,0 +1,12 @@
+.burger {
+   @apply z-20 md:hidden;
+   &.active .crossBtn {
+      @apply block;
+   }
+   &.active .menuBtn {
+      @apply hidden;
+   }
+   & .crossBtn {
+      @apply hidden;
+   }
+}

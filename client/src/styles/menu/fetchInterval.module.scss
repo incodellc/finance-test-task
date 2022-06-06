@@ -1,0 +1,12 @@
+.intervalBtns {
+   @apply grid grid-cols-2 grid-rows-2 gap-2;
+}
+.intervalBtn {
+   &.active {
+      @apply bg-blue-700 cursor-default;
+   }
+   &.disabled {
+      @apply bg-gray-300/90 pointer-events-none;
+   }
+   @apply bg-blue-500 p-1 md:py-2 md:px-5 text-lg md:text-xl text-white font-medium rounded-sm hover:bg-blue-600/90 transition-colors;
+}

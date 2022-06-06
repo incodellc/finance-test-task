@@ -1,0 +1,7 @@
+body,
+html {
+   @apply font-montserrat scroll-smooth bg-gray-100;
+}
+.main {
+   @apply min-h-screen overflow-hidden md:flex;
+}

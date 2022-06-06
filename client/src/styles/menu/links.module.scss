@@ -1,0 +1,9 @@
+.links {
+   @apply flex items-start flex-col gap-y-2 md:gap-y-0 md:mb-8;
+   & .link {
+      &.active {
+         @apply border-blue-700 text-blue-700 cursor-default;
+      }
+      @apply text-blue-500 hover:text-blue-600/90 text-2xl font-medium transition-colors md:pl-5 md:pr-10 md:py-3 w-full md:border-r-2 hover:border-blue-600/90;
+   }
+}

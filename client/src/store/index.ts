@@ -12,7 +12,8 @@ export const initialState: RootState = {
   userTickersList: [],
 };
 
-export const rootReducer = (state = initialState, action: AnyAction) => {
+export const rootReducer = (
+  state = initialState, action: AnyAction): RootState => {
   switch (action.type) {
     case LOAD_TICKERS:
       return ({

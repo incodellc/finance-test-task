@@ -1,0 +1,83 @@
+@import '../../variables.scss';
+
+.TickerRow {
+  font-size: 14px;
+  transition: 0.3s;
+  
+  &:nth-child(odd) {
+    background-color: #fff;
+  }
+  
+  &:nth-child(even) {
+    background-color: #f7f7f7;
+  }
+  
+  &:hover {
+    background-color: #e4f1e9;
+    transition: 0.3s;
+  }
+  
+   @each $index, $color in $colors {
+    &--#{$index} {
+      &::before {
+        content: "";
+        display: block;
+        background-color: $color;
+        border-radius: 2px;
+        width: 15px;
+        height: 15px;     
+        margin: 20px auto;
+      }
+    }
+  }
+    
+  &__data {
+    letter-spacing: 1px;
+    text-align: center;
+
+    padding: 10px;
+    
+    &--column {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    &--currency::after {
+      content: "$";
+    }
+
+    &--priceDown {
+      color: red;
+      &::before {
+        content: "\2193 \00A0";
+      }
+    }
+
+    &--priceUp {
+      color: green;
+      &::before {
+        content: "\2191 \00A0";
+      }
+    }
+
+    &--size {
+      font-size: 12px;
+    }
+
+    &--none {
+      @media (max-width: 698px) {
+        display: none;
+      }
+    }
+  }
+
+  &__button {
+    padding: 0 5px;
+    background-color: rgb(144, 36, 36);
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    
+    margin-left: 15px;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "./static/css/main.4e2572a4.chunk.css",
+    "main.js": "./static/js/main.eb328f03.chunk.js",
+    "main.js.map": "./static/js/main.eb328f03.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.3a65dddb.js",
+    "runtime-main.js.map": "./static/js/runtime-main.3a65dddb.js.map",
+    "static/js/2.dfc0bcb6.chunk.js": "./static/js/2.dfc0bcb6.chunk.js",
+    "static/js/2.dfc0bcb6.chunk.js.map": "./static/js/2.dfc0bcb6.chunk.js.map",
+    "static/js/3.a80d752f.chunk.js": "./static/js/3.a80d752f.chunk.js",
+    "static/js/3.a80d752f.chunk.js.map": "./static/js/3.a80d752f.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.4e2572a4.chunk.css.map": "./static/css/main.4e2572a4.chunk.css.map",
+    "static/js/2.dfc0bcb6.chunk.js.LICENSE.txt": "./static/js/2.dfc0bcb6.chunk.js.LICENSE.txt",
+    "static/media/HomePage.scss": "./static/media/finance.aefa5d10.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3a65dddb.js",
+    "static/js/2.dfc0bcb6.chunk.js",
+    "static/css/main.4e2572a4.chunk.css",
+    "static/js/main.eb328f03.chunk.js"
+  ]
+}

@@ -1,11 +1,4 @@
-$colors: (
-  "1": #666666,
-  "2": #469c46,
-  "3": #d5ec61,
-  "4": #c26c03,
-  "5": #711dc4,
-  "6": #e31937,
-);
+@import '../../variables.scss';
 
 .TickerRow {
   font-size: 14px;
@@ -25,7 +18,7 @@ $colors: (
   }
   
    @each $index, $color in $colors {
-    &:nth-child(#{$index}) {
+    &--#{$index} {
       &::before {
         content: "";
         display: block;
@@ -53,8 +46,38 @@ $colors: (
       content: "$";
     }
 
+    &--priceDown {
+      color: red;
+      &::before {
+        content: "\2193 \00A0";
+      }
+    }
+
+    &--priceUp {
+      color: green;
+      &::before {
+        content: "\2191 \00A0";
+      }
+    }
+
     &--size {
       font-size: 12px;
     }
+
+    &--none {
+      @media (max-width: 698px) {
+        display: none;
+      }
+    }
+  }
+
+  &__button {
+    padding: 0 5px;
+    background-color: rgb(144, 36, 36);
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    
+    margin-left: 15px;
   }
 }

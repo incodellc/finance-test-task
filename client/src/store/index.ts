@@ -1,19 +1,35 @@
-import { LOAD_TICKERS } from "./actions";
+import { 
+  LOAD_TICKERS, 
+  ADD_TICKER,
+  DELETE_TICKER,
+} from './actions';
 import { createStore, AnyAction } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { RootState } from "../react-app-env";
 
-const initialState: RootState = {
+export const initialState: RootState = {
   tickersList: [],
+  userTickersList: [],
 };
 
-const rootReducer = (state = initialState, action: AnyAction) => {
+export const rootReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case LOAD_TICKERS:
       return ({
         ...state,
-        tickersList: action.tickersList,
+        tickersList: action.payload,
       });
+    case ADD_TICKER:
+      return ({
+        ...state,
+        userTickersList: state.userTickersList.concat(action.payload),
+      });
+    case DELETE_TICKER:
+      return ({
+        ...state,
+        userTickersList: state.userTickersList
+          .filter(ticks => ticks.ticker !== action.payload),
+      }); 
     
       default:
         return state;

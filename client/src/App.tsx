@@ -5,7 +5,7 @@ import { HomePage } from './components/HomePage';
 import { NotFoundPage } from './components/NotFoundPage';
 import './App.scss';
 
-const App = () => (
+const App: React.FC = () => (
   <section className="App">
       <nav>
       <Link

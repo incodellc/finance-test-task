@@ -1,11 +1,5 @@
 # React Test Task
 
-## Requirements
-
-We need you to implement a solution to display price tickers data on the UI in realtime.
-
-Price data is available from a locally running service (see information below). Any additional visualisations to indicate how prices have changed would be a plus. Testing is also an important part to this exercise.
-
 Ability:
 
 - application connects to the locally running service
@@ -15,11 +9,11 @@ Ability:
 
 As a bonus you can implement (please describe implemented bonus functionality in this file):
 
-- any additional visual effects to highlight positive or negative changes in the prices
+- DONE any additional visual effects to highlight positive or negative changes in the prices
 - the possibility to switch on/off tickers by user
 - the possibility to specify interval time by user
 - the possibility to add/remove ticker from watching group
-- any additional functionality you consider useful
+- DONE (charts of price changing ) any additional functionality you consider useful
 
 Used the next technologies:
 
@@ -27,7 +21,7 @@ Used the next technologies:
 - Redux and Redux-Thunk
 - Socket.io
 - CSS and library "Recharts"
-- Testing Library
+- Jest
 
 We will assess the next parts:
 

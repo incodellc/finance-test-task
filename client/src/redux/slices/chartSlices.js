@@ -53,10 +53,10 @@ export const chartSlice = createSlice({
   reducers: {
     setData: (state, action) => {
       let tickersData = { ...state };
+      if ([...tickersData.AAPL].length > 50) tickersData = { ...initialState };
 
       action.payload.forEach((el) => {
         let ticker = [...tickersData[el.ticker]];
-
         const data = {
           USD: el.price,
           time: getTime(new Date(el.last_trade_time)),

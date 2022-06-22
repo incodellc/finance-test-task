@@ -1,0 +1,32 @@
+.tickerChangePercent {
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  padding: 8px 5px;
+  border-radius: 7px;
+}
+.tickerPercent {
+  display: flex;
+  flex-direction: row;
+  justify-items: baseline;
+  align-content: center;
+  justify-self: center;
+}
+.tickerChangePercent.up {
+  background-color: rgba(192, 238, 216, 0.404);
+}
+.tickerChangePercent.down {
+  background-color: rgba(245, 205, 205, 0.404);
+}
+.tickerArrow {
+  width: 20px;
+  height: 10px;
+}
+.up {
+  color: rgb(6, 133, 69);
+}
+.down {
+  color: rgb(182, 12, 12);
+}

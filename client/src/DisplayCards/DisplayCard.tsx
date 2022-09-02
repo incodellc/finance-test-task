@@ -12,12 +12,12 @@ export const DisplayCards: React.FC = () => {
     const { tickers } = useAppSelector((state: State) => state.tickerSlice);
     
     return (
-        <Box
-            height="100vh"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-        >
+        // <Box
+        //     height="100vh"
+        //     display="flex"
+        //     alignItems="center"
+        //     justifyContent="center"
+        // >
             <Grid 
                 container
                 spacing={2}
@@ -29,6 +29,6 @@ export const DisplayCards: React.FC = () => {
                     </Grid>
                 ))}
             </Grid>
-        </Box>
+        // </Box>
     );
 };

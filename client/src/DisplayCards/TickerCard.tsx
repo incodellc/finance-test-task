@@ -30,7 +30,7 @@ export const TickerCard: React.FC<Props> = ({ ticker }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Remove</Button>
       </CardActions>
     </Card>
   );

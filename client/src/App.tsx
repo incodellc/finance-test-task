@@ -20,7 +20,7 @@ const App: React.FC = () => {
     });
 
     return () => {
-      socket.disconnect();
+      socket.emit('clear_interval');
     };
   }, []);
 

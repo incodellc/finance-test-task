@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const ChangeIndicator: React.FC<Props> = ({ condition, change_percent }) => {
-    return condition ? (
+    return !condition ? (
         <Box alignItems="center" display="flex">
             {` (+${change_percent}%`}
             <ArrowUpwardIcon 

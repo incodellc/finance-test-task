@@ -60,7 +60,7 @@ export const TickerCard: React.FC<Props> = ({ ticker }) => {
 				>
                     {ProperTicker?.ticker}
 					<Typography>
-						{priceCondition ? '+' : '-'}
+						{priceCondition ? '-' : '+'}
 						{ProperTicker?.change}
 					</Typography>
                 </Typography>

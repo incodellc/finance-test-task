@@ -48,8 +48,9 @@ export const useCreateInput: useCreateInput = (emitAction) => {
 
         socket.on(SocketEvents.TICKER, (data) => {
             setTickers(data);
-            setState('');
         });
+
+        setState('');
     };
 
     return ({ 

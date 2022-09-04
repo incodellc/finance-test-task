@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { 
+	useEffect,
+	useRef,
+	useState
+} from 'react';
 import { Ticker } from '../../../Store/Slice/tickerSlice';
-import { useState } from 'react';
-import { 
-	Box,
+import {
 	Button, 
 	Card, 
 	CardActions, 

@@ -27,7 +27,6 @@ function utcDate() {
 }
 
 function getQuotes(socket) {
-
   const quotes = tickers.map(ticker => ({
     ticker,
     exchange: 'NASDAQ',
@@ -76,6 +75,24 @@ app.get('/', function(req, res) {
 });
 
 socketServer.on('connection', (socket) => {
+  socket.on('add_ticker', (data) => {
+    const check = tickers.some(ticker => ticker === data);
+
+    if (check) {
+      console.log('this ticker already exists');
+    } else {
+      tickers.push(data);
+    }
+  });
+
+  socket.on('remove_ticker', (data) => {
+    const index = tickers.findIndex(ticker => ticker === data);
+
+    if (index > -1) {
+      tickers.splice(index, 1);
+    }
+  });
+
   socket.on('start', (interval) => {
     trackTickers(socket, interval);
   });

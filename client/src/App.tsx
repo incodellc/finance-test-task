@@ -2,9 +2,11 @@ import io from 'socket.io-client';
 import React from "react";
 import { useEffect } from "react";
 import { useActions } from "./hooks/useActions";
-import { DisplayCards } from "./DisplayCards";
-import { InputInterval } from './InputInterval';
+import { DisplayCards } from "./components/DisplayCards";
+import { InputInterval } from './components/InputInterval';
 import { Box } from '@mui/material';
+import { InputTicker } from './components/InputTicker';
+import { SocketEvents } from './socketEvents';
 
 const PORT = process.env.PORT || 4000;
 
@@ -14,13 +16,13 @@ const App: React.FC = () => {
   const { setTickers } = useActions();
 
   useEffect(() => {
-    socket.emit('start');
-    socket.on('ticker', (data) => {
+    socket.emit(SocketEvents.START);
+    socket.on(SocketEvents.TICKER, (data) => {
       setTickers(data)
     });
 
     return () => {
-      socket.emit('clear_interval');
+      socket.emit(SocketEvents.CLEAR_INTERVAL);
     };
   }, []);
 
@@ -31,9 +33,12 @@ const App: React.FC = () => {
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
+        maxWidth={900}
+        margin="auto"
     >
       <InputInterval />
       <DisplayCards />
+      <InputTicker />
     </Box>
   );
 };

@@ -3,7 +3,7 @@ import React, {
 	useRef,
 	useState
 } from 'react';
-import { Ticker } from '../../../Store/Slice/tickerSlice';
+import { Ticker } from '../../../store/slice/tickerSlice';
 import {
 	Button, 
 	Card, 
@@ -47,11 +47,11 @@ export const TickerCard: React.FC<Props> = ({ ticker }) => {
 	const Wrapper = disabled || prevState.current.price === ticker.price ? Card : AnimatedCard;
 	const ProperTicker = disabled ? staticTicker : ticker;
 
-	return (
+	return ProperTicker ? (
 		<Wrapper  sx={{ width: 250 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 12 }} color="text.secondary">
-                    {ProperTicker?.exchange}
+                    {ProperTicker.exchange}
                 </Typography>
                 <Typography 
 					variant="h6" 
@@ -60,10 +60,10 @@ export const TickerCard: React.FC<Props> = ({ ticker }) => {
 					justifyContent="space-between"
 					alignItems="center"
 				>
-                    {ProperTicker?.ticker}
+                    {ProperTicker.ticker}
 					<Typography>
 						{priceCondition ? '-' : '+'}
-						{ProperTicker?.change}
+						{ProperTicker.change}
 					</Typography>
                 </Typography>
                 <Typography 
@@ -72,10 +72,10 @@ export const TickerCard: React.FC<Props> = ({ ticker }) => {
 					display="flex"
 					justifyContent="space-between"
 				>
-                    {ProperTicker?.price}
+                    {ProperTicker.price}
 					<ChangeIndicator 
 						condition={priceCondition} 
-						change_percent={ProperTicker?.change_percent}
+						change_percent={ProperTicker.change_percent}
 					/>
                 </Typography>
             </CardContent>
@@ -88,5 +88,9 @@ export const TickerCard: React.FC<Props> = ({ ticker }) => {
                 </Button>
             </CardActionsWrapper>
         </Wrapper>
+	) : (
+		<Typography>
+			Waiting...
+		</Typography>
 	);
 };

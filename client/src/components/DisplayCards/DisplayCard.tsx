@@ -1,11 +1,11 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { tickerState, Ticker } from "../../Store/Slice/tickerSlice";
+import { TickerState, Ticker } from "../../store/slice/tickerSlice";
 import { TickerCard } from "./TickerCard/TickerCard";
 
 interface State {
-    tickerSlice: tickerState
+    tickerSlice: TickerState
 };
 
 export const DisplayCards: React.FC = () => {

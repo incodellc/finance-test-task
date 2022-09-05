@@ -48,6 +48,8 @@
     "@types/node": "^18.7.14",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
-    "@types/react-redux": "^7.1.24"
+    "@types/react-redux": "^7.1.24",
+    "@types/redux-mock-store": "^1.0.3",
+    "redux-mock-store": "^1.5.4"
   }
 }

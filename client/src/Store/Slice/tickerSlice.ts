@@ -11,11 +11,11 @@ export interface Ticker {
     last_trade_time: string
 };
 
-export interface tickerState {
+export interface TickerState {
     tickers: Ticker[]
 };
 
-const initialState: tickerState = {
+const initialState: TickerState = {
     tickers: []
 };
 

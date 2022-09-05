@@ -3,10 +3,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useActions } from "./hooks/useActions";
 import { DisplayCards } from "./components/DisplayCards";
-import { InputInterval } from './components/InputInterval';
 import { Box } from '@mui/material';
-import { InputTicker } from './components/InputTicker';
 import { SocketEvents } from './socketEvents';
+import { Ticker } from './store/slice/tickerSlice';
+import { InputActions, InputElement } from './components/InputElement';
 
 const PORT = process.env.PORT || 4000;
 
@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     socket.emit(SocketEvents.START);
-    socket.on(SocketEvents.TICKER, (data) => {
+    socket.on(SocketEvents.TICKER, (data: Ticker[]) => {
       setTickers(data)
     });
 
@@ -36,9 +36,19 @@ const App: React.FC = () => {
         maxWidth={900}
         margin="auto"
     >
-      <InputInterval />
+      <InputElement
+        emitAction={InputActions.SET_INTERVAL}
+        type="number"
+        label="Time, s"
+        text="set interval"
+      />
       <DisplayCards />
-      <InputTicker />
+      <InputElement
+        emitAction={InputActions.ADD_TICKER}
+        type="text"
+        label="Name"
+        text="add ticker"
+      />
     </Box>
   );
 };

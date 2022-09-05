@@ -4,30 +4,32 @@ import {
     TextField 
 } from "@mui/material";
 import React, { useState } from "react";
-import { useRef } from "react";
-import { socket } from "../App";
-import { SocketEvents } from "../socketEvents";
-import { useActions } from "./useActions";
+import { socket } from "../../App";
+import { SocketEvents } from "../../socketEvents";
+import { useActions } from "../../hooks/useActions";
 
 type InputIvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
 export enum InputActions {
     SET_INTERVAL = 'set_interval',
-    SET_TICKER = 'set_ticker'
+    ADD_TICKER = 'add_ticker'
 };
 
 interface Props {
+    emitAction: InputActions,
     type: string,
     label: string,
-    text: string
+    text: string,
 };
 
-type useCreateInput = (emitAction: InputActions) => React.FC<Props>;
-
-export const useCreateInput: useCreateInput = (emitAction) => {
+export const InputElement: React.FC<Props> = ({
+    emitAction,
+    type,
+    label,
+    text,
+}) => {
     const [state, setState] = useState('');
     const { setTickers } = useActions();
-    const enableAutofocus = useRef(null);
 
     const handleChange = (event: InputIvent) => {
         setState(event.target.value);
@@ -40,7 +42,7 @@ export const useCreateInput: useCreateInput = (emitAction) => {
             case InputActions.SET_INTERVAL:
                 socket.emit(SocketEvents.START, +state * 1000);
                 break;
-            case InputActions.SET_TICKER:
+            case InputActions.ADD_TICKER:
                 socket.emit(SocketEvents.ADD_TICKER, state);
                 socket.emit(SocketEvents.START);
                 break; 
@@ -53,11 +55,7 @@ export const useCreateInput: useCreateInput = (emitAction) => {
         setState('');
     };
 
-    return ({ 
-        type,
-        label,
-        text
-    }) => (
+    return (
         <Box 
             alignItems="center"
             display="flex"
@@ -66,11 +64,8 @@ export const useCreateInput: useCreateInput = (emitAction) => {
             width="100%"
         >
             <TextField
-                ref={enableAutofocus}
-                id="outlined-number"
                 label={label}
                 type={type}
-                autoFocus={enableAutofocus.current !== null}
                 InputLabelProps={{
                     shrink: true,
                 }}

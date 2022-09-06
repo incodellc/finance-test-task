@@ -5,7 +5,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 interface Props {
     condition: boolean,
-    change_percent: number
+    change_percent: string
 };
 
 export const ChangeIndicator: React.FC<Props> = ({ condition, change_percent }) => {

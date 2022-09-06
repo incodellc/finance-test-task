@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import io from 'socket.io-client';
 import React from "react";
 import { useEffect } from "react";
@@ -18,7 +19,7 @@ const App: React.FC = () => {
   useEffect(() => {
     socket.emit(SocketEvents.START);
     socket.on(SocketEvents.TICKER, (data: Ticker[]) => {
-      setTickers(data)
+      setTickers(data);
     });
 
     return () => {

@@ -67,7 +67,8 @@ export const TickerCard: React.FC<Props> = ({ ticker }) => {
 					</Typography>
                 </Typography>
                 <Typography 
-					variant="body2" 
+					variant="body2"
+					component="div"
 					alignItems="center" 
 					display="flex"
 					justifyContent="space-between"

@@ -3,12 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface Ticker {
     ticker: string,
     exchange: string,
-    price: number,
-    change: number,
-    change_percent: number,
-    dividend: number,
-    yield: number,
-    last_trade_time: string
+    price: string,
+    change: string,
+    change_percent: string,
+    dividend: string,
+    yield: string,
+    last_trade_time: Date
 };
 
 export interface TickerState {

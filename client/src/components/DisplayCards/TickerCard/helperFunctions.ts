@@ -1,4 +1,4 @@
-import { SocketEvents } from '../../../socketEvents';
+import { SocketEvents } from '../../../utils/socket_events';
 import { socket } from "../../../App";
 import { keyframes } from '@mui/material';
 

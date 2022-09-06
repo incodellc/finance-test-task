@@ -8,7 +8,7 @@ interface Props {
     change_percent: string
 };
 
-export const ChangeIndicator: React.FC<Props> = ({ condition, change_percent }) => {
+export const ArrowIndicator: React.FC<Props> = ({ condition, change_percent }) => {
     return !condition ? (
         <Box alignItems="center" display="flex">
             {` (+${change_percent}%`}

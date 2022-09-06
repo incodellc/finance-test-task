@@ -4,7 +4,7 @@ import {
   screen
 } from '@testing-library/react';
 import App from '../../App';
-import { regEx, renderReduxComponent } from '../../App.test';
+import { regEx, renderReduxComponent } from '../../utils/test_utils';
 
 const input = {
   test: {

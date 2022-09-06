@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { socket } from "../../App";
-import { SocketEvents } from "../../socketEvents";
+import { SocketEvents } from "../../utils/socket_events";
 import { useActions } from "../../hooks/useActions";
 
 type InputIvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
@@ -37,7 +37,7 @@ export const InputElement: React.FC<Props> = ({
 
     const handleClick = () => {
         socket.emit(SocketEvents.CLEAR_INTERVAL);
-
+        
         switch (emitAction) {
             case InputActions.SET_INTERVAL:
                 socket.emit(SocketEvents.START, +state * 1000);

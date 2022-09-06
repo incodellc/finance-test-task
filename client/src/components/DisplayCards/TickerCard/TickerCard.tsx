@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { useActions } from '../../../hooks/useActions';
 import { colorIndicator, removeTicker } from './helperFunctions';
-import { ChangeIndicator } from './ChangeIndicator';
+import { ArrowIndicator } from './ChangeIndicator';
 
 interface Props {
   	ticker: Ticker
@@ -74,7 +74,7 @@ export const TickerCard: React.FC<Props> = ({ ticker }) => {
 					justifyContent="space-between"
 				>
                     {ProperTicker.price}
-					<ChangeIndicator 
+					<ArrowIndicator 
 						condition={priceCondition} 
 						change_percent={ProperTicker.change_percent}
 					/>

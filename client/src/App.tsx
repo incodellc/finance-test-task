@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useActions } from "./hooks/useActions";
 import { DisplayCards } from "./components/DisplayCards";
 import { Box } from '@mui/material';
-import { SocketEvents } from './socketEvents';
+import { SocketEvents } from './utils/socket_events';
 import { Ticker } from './store/slice/tickerSlice';
 import { InputActions, InputElement } from './components/InputElement';
 

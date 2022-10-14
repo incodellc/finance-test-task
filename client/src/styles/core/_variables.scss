@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Rufina:wght@700&display=swap");
+
+$maxWidth: 1920;
+$minWidth: 320;
+
+$breakpoints: (
+  "phone": 400px,
+  "phone-wide": 480px,
+  "phablet": 560px,
+  "tablet-small": 640px,
+  "tablet": 768px,
+  "tablet-wide": 1024px,
+  "desktop": 1248px,
+  "desktop-wide": 1440px,
+);
+
+$z-indexes: (
+  "outdated-browser",
+  "modal",
+  "site-header",
+  "page-wrapper",
+  "site-footer"
+);
+
+$colors: (
+  "white": #ffffff,
+  "black": rgb(0, 0, 0),
+  "gradient": radial-gradient(#7a9aa8, #216582d1),
+  "second": rgb(39, 202, 69),
+  "font": #ffffff,
+  "linkHover": rgb(21, 21, 21),
+  "overlay": rgba(0, 0, 0, 0.5),
+);
+
+$fonts: (
+  "primary": (
+    "Roboto",
+    sans-serif,
+  ),
+  "secondary": (
+    "Rufina",
+    serif,
+  ),
+);
+
+$transition: (
+  "primary": (
+    all 300ms ease-in-out,
+  ),
+  "secondary": (
+    all 800ms,
+  ),
+);

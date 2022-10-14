@@ -1,0 +1,63 @@
+@use "variables" as *;
+
+@mixin mq($width, $type: max) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@mixin adaptiv-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidthLocal: $maxWidth - $minWidth;
+
+  @media (max-width: #{$minWidth}px) {
+    font-size: #{$mobSize}px;
+  }
+
+  @media (min-width: #{$maxWidth}px) {
+    font-size: #{$pcSize}px;
+  }
+
+  font-size: calc(
+    #{$mobSize + px} + #{$addSize} *
+      ((100vw - #{$minWidth}px) / #{$maxWidthLocal})
+  );
+}
+
+@mixin input-placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+@mixin hardware($backface: true, $perspective: 1000) {
+  @if $backface {
+    backface-visibility: hidden;
+  }
+  perspective: $perspective;
+}
+
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

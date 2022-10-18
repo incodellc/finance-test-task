@@ -1,5 +1,5 @@
-@use "core" as *;
-@use "App";
+@use 'core' as *;
+@use 'App';
 * {
   padding: 0;
   margin: 0;
@@ -13,7 +13,7 @@
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
-
+   
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #888;
@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: get($colors, "gradient");
+  background: get($colors, 'gradient');
 }
 
 a {
@@ -39,11 +39,11 @@ input {
   display: block;
   outline: none;
 
-  &[type="file"] {
+  &[type='file'] {
     cursor: pointer;
   }
 
-  &[type="submit"] {
+  &[type='submit'] {
     border: 1px solid;
     cursor: pointer;
   }
@@ -63,7 +63,7 @@ button {
   height: 100%;
   width: 100%;
   cursor: pointer;
-  background-color: get($colors, "overlay");
+  background-color: get($colors, 'overlay');
 
   &.transition {
     &-enter {
@@ -71,14 +71,14 @@ button {
     }
     &-enter-active {
       opacity: 1;
-      transition: get($transition, "secondary");
+      transition: get($transition, 'secondary');
     }
     &-exit {
       opacity: 1;
     }
     &-exit-active {
       opacity: 0;
-      transition: get($transition, "secondary");
+      transition: get($transition, 'secondary');
     }
   }
 
@@ -88,7 +88,7 @@ button {
     align-items: center;
     padding: 20px;
     cursor: default;
-    background: get($colors, "white");
+    background: get($colors, 'white');
   }
 }
 .loader-ellipsis {

@@ -1,5 +1,7 @@
 {
+    "parser": "babel-eslint",
     "env": {
+        "node": true,
         "browser": true,
         "es2021": true,
         "jest": true
@@ -19,6 +21,9 @@
         "react"
     ],
     "rules": {
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "no-process-env": "off",
+        "no-unused-vars": "off"
+        
     }
 }

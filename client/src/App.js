@@ -1,25 +1,28 @@
 
-import logo from "./logo.svg";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { tickersState } from "./common/atoms";
+import { socket } from './common/socket'
 
 function App() {
+  const [tickers, setTickers] = useRecoilState(tickersState)
+
+  useEffect(() => {
+    socket.on('ticker', (data) => {
+      setTickers(data)
+    })
+
+    return () => {
+      socket.off('ticker')
+    }
+  }, [])
 
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>
+        {tickers.length ? 'true' : 'flase'} - tickers
+      </p>
     </div>
   );
 }

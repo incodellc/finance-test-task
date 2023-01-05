@@ -1,7 +1,7 @@
 import { CONNECT, DISCONNECT } from './types'
 import io from 'socket.io-client'
 import { getQuotes } from './quotesActions'
-const socket = io.connect('https://finance-tickers.herokuapp.com/')
+const socket = io.connect('https://finance-tickers.netlify.app')
 
 export const connectToSocket = fetchInterval => dispatch => {
    socket.connect()

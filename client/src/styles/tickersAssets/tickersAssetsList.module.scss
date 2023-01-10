@@ -1,0 +1,43 @@
+.tickerAssetsList {
+   @apply mt-4 bg-white flex flex-col gap-y-3 lg:gap-y-4 rounded-2xl p-4 shadow-md;
+}
+.tickerAsset {
+   @apply h-8 flex items-center justify-between md:justify-start;
+   & .logo {
+      @apply max-w-[80px] md:max-w-[90px] lg:max-w-[124px] w-full lg:text-xl truncate mr-4 lg:mr-5 p-1 rounded-md text-center font-semibold;
+   }
+   [data-logo="AAPL"] {
+      @apply bg-black text-white;
+   }
+   [data-logo="GOOGL"] {
+      @apply bg-amber-400 text-white;
+   }
+   [data-logo="MSFT"] {
+      @apply bg-blue-500 text-white;
+   }
+   [data-logo="AMZN"] {
+      @apply bg-orange-400 text-black;
+   }
+   [data-logo="FB"] {
+      @apply bg-blue-700 text-white;
+   }
+   [data-logo="TSLA"] {
+      @apply bg-red-600 text-white;
+   }
+}
+input[type="checkbox"] {
+   @apply absolute appearance-none;
+   &:checked + .switch::before {
+      @apply left-7;
+   }
+   &:checked + .switch {
+      @apply bg-green-400;
+   }
+}
+.switch {
+   @apply block cursor-pointer relative w-14 h-8 bg-slate-200 rounded-full transition-colors;
+   &::before {
+      content: "";
+      @apply absolute w-6 h-6 top-1 left-1 rounded-full bg-white transition-all;
+   }
+}

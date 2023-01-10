@@ -1,0 +1,12 @@
+{
+   "overrides": [
+      {
+         "files": ["*.js", "*.jsx"],
+         "options": {
+            "semi": false,
+            "singleQuote": true,
+            "arrowParens": "avoid"
+         }
+      }
+   ]
+}

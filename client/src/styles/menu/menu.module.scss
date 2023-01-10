@@ -1,0 +1,18 @@
+.aside {
+   @apply bg-white p-3 md:p-0 flex md:flex-col items-start;
+}
+.logo {
+   @apply hidden md:flex items-end w-full gap-x-2 my-4 ml-4;
+   & img {
+      @apply lg:w-9;
+   }
+   &Title {
+      @apply font-bold text-xl lg:text-2xl;
+   }
+}
+.menu {
+   &.active {
+      @apply top-0;
+   }
+   @apply flex md:flex-col absolute md:static -top-full left-0 gap-x-3 items-center justify-between bg-white shadow-2xl md:shadow-none w-full z-10 pt-16 md:pt-0 pb-3 md:pb-0 px-3 md:px-0;
+}

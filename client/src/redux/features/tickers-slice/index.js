@@ -4,7 +4,7 @@ const tickerSlice = createSlice({
   name: "ticker",
   initialState: [],
   reducers: {
-    tickersReceived: (state, action) => {
+    tickersReceived: (_, action) => {
       return action.payload;
     },
   },

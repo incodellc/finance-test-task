@@ -1,8 +1,10 @@
+import { TickerItem } from "../ticker-item";
+
 export const TickersList = ({ tickers }) => {
   return (
     <>
-      {tickers.map(({ticker}) => (
-        <div key={ticker}>{ticker}</div>
+      {tickers.length > 0 && tickers.map((ticker) => (
+        <TickerItem tickerItem={ticker} key={ticker.ticker} />
       ))}
     </>
   );

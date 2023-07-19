@@ -17,9 +17,7 @@ function App() {
     });
   }, [dispatch]);
 
-  console.log(tickers);
-
-  return <TickersList tickers={tickers} />;
+  return (tickers.length > 0 && <TickersList tickers={tickers} />);
 }
 
 export default App;

@@ -1,4 +1,5 @@
 import { TickerItem } from "../ticker-item";
+import PropTypes from "prop-types";
 
 export const TickersList = ({ tickers }) => {
   return (
@@ -8,4 +9,8 @@ export const TickersList = ({ tickers }) => {
       ))}
     </div>
   );
+};
+
+TickersList.propTypes = {
+  tickers: PropTypes.array,
 };

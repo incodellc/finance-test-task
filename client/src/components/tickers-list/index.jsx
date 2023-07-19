@@ -2,10 +2,10 @@ import { TickerItem } from "../ticker-item";
 
 export const TickersList = ({ tickers }) => {
   return (
-    <>
-      {tickers.length > 0 && tickers.map((ticker) => (
+    <div className="flex flex-col">
+      {tickers.map((ticker) => (
         <TickerItem tickerItem={ticker} key={ticker.ticker} />
       ))}
-    </>
+    </div>
   );
 };

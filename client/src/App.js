@@ -4,6 +4,8 @@ import { io } from "socket.io-client";
 import { tickersReceived } from "./redux/features/tickers-slice";
 import { TickersList } from "./components/tickers-list";
 
+import "./index.css";
+
 function App() {
   const dispatch = useDispatch();
   const tickers = useSelector((state) => state.tickers);
@@ -17,7 +19,11 @@ function App() {
     });
   }, [dispatch]);
 
-  return (tickers.length > 0 && <TickersList tickers={tickers} />);
+  return (tickers.length > 0 && (
+    <div className="w-screen h-screen flex justify-center">
+      <TickersList tickers={tickers} />
+    </div>
+  ));
 }
 
 export default App;

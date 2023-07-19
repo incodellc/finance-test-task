@@ -2,7 +2,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 
 export const TickerPriceChanges = ({ change, changePercent, price }) => {
-  const priceChanged =  Math.round((Number(price) - Number(change)) * 100) / 100;
+  const priceChanged = Math.round((Number(price) - Number(change)) * 100) / 100;
 
   const containerClass = classNames("flex", "items-center", "gap-4", {
     "text-green-600": priceChanged > 0,
@@ -11,10 +11,13 @@ export const TickerPriceChanges = ({ change, changePercent, price }) => {
   const arrowClasses = classNames("material-symbols-outlined", {
     "rotate-180": priceChanged < 0,
   });
-  const priceBadgeClasses = classNames("p-2 flex gap-1 items-center border border-transparent rounded-lg", {
-    "bg-green-50": priceChanged > 0,
-    "bg-red-50": priceChanged < 0,
-  })
+  const priceBadgeClasses = classNames(
+    "p-2 flex gap-1 items-center border border-transparent rounded-lg",
+    {
+      "bg-green-50": priceChanged > 0,
+      "bg-red-50": priceChanged < 0,
+    }
+  );
 
   return (
     <div className={containerClass}>

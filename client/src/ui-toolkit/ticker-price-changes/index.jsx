@@ -2,7 +2,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 
 export const TickerPriceChanges = ({ change, changePercent, price }) => {
-  const priceChanged = Math.round((Number(price) - Number(change)) * 100) / 100;
+  const priceChanged = (Number(price) - Number(change)).toFixed(2);
 
   const containerClass = classNames("flex", "items-center", "gap-4", {
     "text-green-600": priceChanged > 0,

@@ -20,7 +20,7 @@ function App() {
   }, [dispatch]);
 
   return (tickers.length > 0 && (
-    <div className="container w-fit mx-auto h-screen flex flex-col justify-center gap-2 mt-5 justify-center">
+    <div className="container w-fit mx-auto h-screen flex flex-col justify-center gap-2 justify-center">
       <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
       <TickersList tickers={tickers} />
     </div>

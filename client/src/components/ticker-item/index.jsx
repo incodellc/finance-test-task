@@ -25,8 +25,6 @@ export const TickerItem = ({ tickerItem }) => {
     }
   }, []);
 
-  console.log(tickerItem);
-
   return (
     <div className="w-full flex items-ceter justify-between gap-24 border-t border-t-slate-200 border-b border-b-slate-200 py-2.5 pr-5 hover:bg-slate-100 cursor-pointer">
       <div className="flex gap-2.5 items-center">

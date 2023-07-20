@@ -27,18 +27,22 @@ function App() {
     tickers.length > 0 && (
       <div className="container w-fit mx-auto h-screen flex mt-5 justify-center gap-12 justify-center mb-20">
         <div className="flex flex-col gap-5 items-start">
-          <div className="flex flex-col gap-2 items-start">
-            <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
-            <TickersList
-              tickers={tickers.filter(({ ticker }) => !unwatchedTickers.includes(ticker))}
-              watchList={watchTickers}
-              setWatchList={setWatchTickers}
-              setActiveTicker={setActiveTicket}
-              activeTicket={activeTicket}
-              unwatchedTickers={unwatchedTickers}
-              setUnwatchedTickers={setUnwatchedTickers}
-            />
-          </div>
+          {unwatchedTickers.length !== tickers.length && (
+            <div className="flex flex-col gap-2 items-start">
+              <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
+              <TickersList
+                tickers={tickers.filter(
+                  ({ ticker }) => !unwatchedTickers.includes(ticker)
+                )}
+                watchList={watchTickers}
+                setWatchList={setWatchTickers}
+                setActiveTicker={setActiveTicket}
+                activeTicket={activeTicket}
+                unwatchedTickers={unwatchedTickers}
+                setUnwatchedTickers={setUnwatchedTickers}
+              />
+            </div>
+          )}
 
           {unwatchedTickers.length > 0 && (
             <div className="flex flex-col gap-2 items-start">
@@ -46,7 +50,9 @@ function App() {
                 Unwatched tickers:
               </h3>
               <TickersList
-                tickers={tickers.filter(({ ticker }) => unwatchedTickers.includes(ticker))}
+                tickers={tickers.filter(({ ticker }) =>
+                  unwatchedTickers.includes(ticker)
+                )}
                 watchList={watchTickers}
                 setWatchList={setWatchTickers}
                 setActiveTicker={setActiveTicket}

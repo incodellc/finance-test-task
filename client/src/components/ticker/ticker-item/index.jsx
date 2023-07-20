@@ -10,9 +10,11 @@ export const TickerItem = ({
   setWatchList,
   activeTicket,
   setActiveTicket,
+  unwatchedTickers,
 }) => {
   const { ticker, price, change, change_percent } = tickerItem;
   const [isAdded, setIsAdded] = useState(false);
+  const isUnwatch = unwatchedTickers.includes(ticker);
 
   const getTickerName = useCallback((tickerName) => {
     switch (tickerName) {
@@ -52,8 +54,21 @@ export const TickerItem = ({
     }
   );
 
+  const switchButtonClass = classNames("py-2 px-4 hover:flex hover:justify-center text-white uppercase rounded-lg", {
+    "bg-rose-600": !isUnwatch,
+    "hover:bg-rose-700": !isUnwatch,
+    "active:bg-rose-900": !isUnwatch,
+    "bg-green-600": isUnwatch,
+    "hover:bg-green-700": !isUnwatch,
+    "active:bg-green-900": !isUnwatch,
+  });
+
   return (
-    <div className={wrapperClass} onMouseEnter={() => setActiveTicket(ticker)} onMouseLeave={() => setActiveTicket("")}>
+    <div
+      className={wrapperClass}
+      onMouseEnter={() => setActiveTicket(ticker)}
+      onMouseLeave={() => setActiveTicket("")}
+    >
       <div className="flex gap-2.5 items-center">
         <TickerBadge tickerName={ticker} />
         <p className="font-medium">{getTickerName(ticker)}</p>
@@ -68,6 +83,7 @@ export const TickerItem = ({
           ticker={tickerItem}
           isAdded={isAdded}
         />
+        <button className={switchButtonClass}>{!isUnwatch ? "Off" : "On"}</button>
       </div>
     </div>
   );
@@ -79,4 +95,5 @@ TickerItem.propTypes = {
   watchList: PropTypes.array,
   activeTicket: PropTypes.string,
   setActiveTicket: PropTypes.func,
+  unwatchedTickers: PropTypes.array,
 };

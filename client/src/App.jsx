@@ -12,6 +12,7 @@ function App() {
   const tickers = useSelector((state) => state.tickers);
   const [watchTickers, setWatchTickers] = useState([]);
   const [activeTicket, setActiveTicket] = useState("");
+  const [unwatchedTickers, setUnwatchedTickers] = useState([]);
 
   useEffect(() => {
     const socket = io.connect("http://localhost:4000");
@@ -25,15 +26,33 @@ function App() {
   return (
     tickers.length > 0 && (
       <div className="container w-fit mx-auto h-screen flex mt-5 justify-center gap-12 justify-center mb-20">
-        <div className="flex flex-col gap-2 items-start">
-          <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
-          <TickersList
-            tickers={tickers}
-            watchList={watchTickers}
-            setWatchList={setWatchTickers}
-            setActiveTicker={setActiveTicket}
-            activeTicket={activeTicket}
-          />
+        <div className="flex flex-col gap-5 items-start">
+          <div className="flex flex-col gap-2 items-start">
+            <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
+            <TickersList
+              tickers={tickers}
+              watchList={watchTickers}
+              setWatchList={setWatchTickers}
+              setActiveTicker={setActiveTicket}
+              activeTicket={activeTicket}
+              unwatchedTickers={unwatchedTickers}
+            />
+          </div>
+
+          {unwatchedTickers.length > 0 && (
+            <div className="flex flex-col gap-2 items-start">
+              <h3 className="font-medium text-slate-700 text-sm">
+                Unwatched tickers:
+              </h3>
+              <TickersList
+                tickers={tickers.filter(({ ticker }) => unwatchedTickers.includes(ticker))}
+                watchList={watchTickers}
+                setWatchList={setWatchTickers}
+                setActiveTicker={setActiveTicket}
+                activeTicket={activeTicket}
+              />
+            </div>
+          )}
         </div>
         <WatchingList
           watchTickers={watchTickers}

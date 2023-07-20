@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TickerBadge } from "../../../ui-toolkit/ticker-badge";
 import { TickerPriceChanges } from "../../../ui-toolkit/ticker-price-changes";
 import PropTypes from "prop-types";
@@ -16,6 +16,10 @@ export const TickerItem = ({
   const { ticker, price, change, change_percent } = tickerItem;
   const [isAdded, setIsAdded] = useState(false);
   const isUnwatch = unwatchedTickers.includes(ticker);
+
+  useEffect(() => {
+    setIsAdded(watchList.map(tickerItem => tickerItem.ticker).includes(ticker));
+  }, [watchList]);
 
   const getTickerName = useCallback((tickerName) => {
     switch (tickerName) {
@@ -38,15 +42,13 @@ export const TickerItem = ({
 
   const handleAdd = useCallback(
     (tickerItem) => {
-      setIsAdded(!isAdded);
-
       !watchList.some(({ ticker }) => ticker === tickerItem.ticker)
         ? setWatchList([...watchList, tickerItem])
         : setWatchList(
           watchList.filter(({ ticker }) => ticker !== tickerItem.ticker)
         );
     },
-    [watchList, setWatchList, isAdded, setIsAdded]
+    [watchList, setWatchList]
   );
   const wrapperClass = classNames(
     "w-full flex items-ceter justify-between gap-24 border-t border-t-slate-200 border-b border-b-slate-200 py-2.5 pr-5 hover:bg-slate-100 cursor-pointer",

@@ -30,7 +30,7 @@ function App() {
           <div className="flex flex-col gap-2 items-start">
             <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
             <TickersList
-              tickers={tickers}
+              tickers={tickers.filter(({ ticker }) => !unwatchedTickers.includes(ticker))}
               watchList={watchTickers}
               setWatchList={setWatchTickers}
               setActiveTicker={setActiveTicket}

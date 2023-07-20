@@ -11,6 +11,7 @@ export const TickerItem = ({
   activeTicket,
   setActiveTicket,
   unwatchedTickers,
+  setUnwatchedTickers,
 }) => {
   const { ticker, price, change, change_percent } = tickerItem;
   const [isAdded, setIsAdded] = useState(false);
@@ -54,14 +55,25 @@ export const TickerItem = ({
     }
   );
 
-  const switchButtonClass = classNames("py-2 px-4 hover:flex hover:justify-center text-white uppercase rounded-lg", {
-    "bg-rose-600": !isUnwatch,
-    "hover:bg-rose-700": !isUnwatch,
-    "active:bg-rose-900": !isUnwatch,
-    "bg-green-600": isUnwatch,
-    "hover:bg-green-700": !isUnwatch,
-    "active:bg-green-900": !isUnwatch,
-  });
+  const switchButtonClass = classNames(
+    "py-2 px-4 hover:flex hover:justify-center text-white uppercase rounded-lg",
+    {
+      "bg-rose-600": !isUnwatch,
+      "hover:bg-rose-700": !isUnwatch,
+      "active:bg-rose-900": !isUnwatch,
+      "bg-green-600": isUnwatch,
+      "hover:bg-green-700": isUnwatch,
+      "active:bg-green-900": isUnwatch,
+    }
+  );
+
+  const handleClick = useCallback(() => {
+    !isUnwatch
+      ? setUnwatchedTickers([...unwatchedTickers, ticker])
+      : setUnwatchedTickers(
+        unwatchedTickers.filter((tickerName) => tickerName !== ticker)
+      );
+  }, [isUnwatch, unwatchedTickers]);
 
   return (
     <div
@@ -74,16 +86,22 @@ export const TickerItem = ({
         <p className="font-medium">{getTickerName(ticker)}</p>
       </div>
       <div className="flex items-center gap-10">
-        <p className="font-bold">{`${price} $`}</p>
-        <TickerPriceChanges
-          change={change}
-          changePercent={change_percent}
-          price={price}
-          handleAdd={handleAdd}
-          ticker={tickerItem}
-          isAdded={isAdded}
-        />
-        <button className={switchButtonClass}>{!isUnwatch ? "Off" : "On"}</button>
+        {!isUnwatch && (
+          <>
+            <p className="font-bold">{`${price} $`}</p>
+            <TickerPriceChanges
+              change={change}
+              changePercent={change_percent}
+              price={price}
+              handleAdd={handleAdd}
+              ticker={tickerItem}
+              isAdded={isAdded}
+            />
+          </>
+        )}
+        <button className={switchButtonClass} onClick={handleClick}>
+          {!isUnwatch ? "Off" : "On"}
+        </button>
       </div>
     </div>
   );
@@ -96,4 +114,5 @@ TickerItem.propTypes = {
   activeTicket: PropTypes.string,
   setActiveTicket: PropTypes.func,
   unwatchedTickers: PropTypes.array,
+  setUnwatchedTickers: PropTypes.func,
 };

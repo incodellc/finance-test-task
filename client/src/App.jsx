@@ -36,6 +36,7 @@ function App() {
               setActiveTicker={setActiveTicket}
               activeTicket={activeTicket}
               unwatchedTickers={unwatchedTickers}
+              setUnwatchedTickers={setUnwatchedTickers}
             />
           </div>
 
@@ -50,6 +51,8 @@ function App() {
                 setWatchList={setWatchTickers}
                 setActiveTicker={setActiveTicket}
                 activeTicket={activeTicket}
+                unwatchedTickers={unwatchedTickers}
+                setUnwatchedTickers={setUnwatchedTickers}
               />
             </div>
           )}

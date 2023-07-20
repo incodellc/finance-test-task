@@ -1,9 +1,15 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
-export const TickerPriceChanges = ({ change, changePercent, price }) => {
+export const TickerPriceChanges = ({
+  change,
+  changePercent,
+  price,
+  handleAdd,
+  ticker,
+  isAdded,
+}) => {
   const priceChanged = (Number(price) - Number(change)).toFixed(2);
-
   const containerClass = classNames("flex", "items-center", "gap-4", {
     "text-green-600": priceChanged > 0,
     "text-red-600": priceChanged < 0,
@@ -19,6 +25,11 @@ export const TickerPriceChanges = ({ change, changePercent, price }) => {
     }
   );
 
+  const buttonClasses = classNames({
+    "text-slate-400 hover:text-blue-400": !isAdded,
+    "text-blue-400": isAdded,
+  });
+
   return (
     <div className={containerClass}>
       <p>{priceChanged > 0 ? `+${priceChanged}$` : `${priceChanged}$`}</p>
@@ -27,8 +38,10 @@ export const TickerPriceChanges = ({ change, changePercent, price }) => {
           <span className={arrowClasses}>arrow_upward</span>
           <p>{`${changePercent}%`}</p>
         </div>
-        <button className="text-slate-400 hover:text-blue-400">
-          <span className="material-symbols-outlined">add_circle</span>
+        <button className={buttonClasses} onClick={() => handleAdd(ticker)}>
+          <span className="material-symbols-outlined">
+            {!isAdded ? "add_circle" : "do_not_disturb_on"}
+          </span>
         </button>
       </div>
     </div>
@@ -39,4 +52,7 @@ TickerPriceChanges.propTypes = {
   change: PropTypes.string,
   changePercent: PropTypes.string,
   price: PropTypes.string,
+  handleAdd: PropTypes.func,
+  ticker: PropTypes.object,
+  isAdded: PropTypes.bool,
 };

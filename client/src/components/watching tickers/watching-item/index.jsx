@@ -8,6 +8,8 @@ export const WatchingItem = ({
   tickers,
   watchTickers,
   setWatchTickers,
+  activeTicket,
+  setActiveTicket,
 }) => {
   const { ticker, price, change, change_percent } = tickerItem;
   const priceChanged = (Number(price) - Number(change)).toFixed(2);
@@ -53,8 +55,15 @@ export const WatchingItem = ({
     );
   }, [tickers]);
 
+  const wrapperClass = classNames(
+    "w-full flex items-ceter justify-between gap-24 border border-transparent py-2.5 pr-5 hover:bg-slate-100 cursor-pointer",
+    {
+      "bg-slate-100": activeTicket === ticker,
+    }
+  );
+
   return (
-    <div className="w-full flex items-ceter justify-between gap-24 cursor-pointer border border-transparent hover:bg-slate-50">
+    <div className={wrapperClass} onMouseLeave={() => setActiveTicket("")} onMouseEnter={() => setActiveTicket(ticker)}>
       <div className="flex gap-5 items-center">
         <TickerBadge tickerName={ticker} />
         <p className="font-medium">{getTickerName(ticker)}</p>
@@ -77,4 +86,6 @@ WatchingItem.propTypes = {
   tickers: PropTypes.array,
   watchTickers: PropTypes.array,
   setWatchTickers: PropTypes.func,
+  activeTicket: PropTypes.string,
+  setActiveTicket: PropTypes.func.isRequired,
 };

@@ -11,6 +11,7 @@ function App() {
   const dispatch = useDispatch();
   const tickers = useSelector((state) => state.tickers);
   const [watchTickers, setWatchTickers] = useState([]);
+  const [activeTicket, setActiveTicket] = useState("");
 
   useEffect(() => {
     const socket = io.connect("http://localhost:4000");
@@ -30,9 +31,17 @@ function App() {
             tickers={tickers}
             watchList={watchTickers}
             setWatchList={setWatchTickers}
+            setActiveTicker={setActiveTicket}
+            activeTicket={activeTicket}
           />
         </div>
-        <WatchingList watchTickers={watchTickers} tickers={tickers} setWatchTickers={setWatchTickers} />
+        <WatchingList
+          watchTickers={watchTickers}
+          tickers={tickers}
+          setWatchTickers={setWatchTickers}
+          activeTicket={activeTicket}
+          setActiveTicket={setActiveTicket}
+        />
       </div>
     )
   );

@@ -2,8 +2,15 @@ import { useCallback, useState } from "react";
 import { TickerBadge } from "../../../ui-toolkit/ticker-badge";
 import { TickerPriceChanges } from "../../../ui-toolkit/ticker-price-changes";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
-export const TickerItem = ({ tickerItem, watchList, setWatchList }) => {
+export const TickerItem = ({
+  tickerItem,
+  watchList,
+  setWatchList,
+  activeTicket,
+  setActiveTicket,
+}) => {
   const { ticker, price, change, change_percent } = tickerItem;
   const [isAdded, setIsAdded] = useState(false);
 
@@ -38,9 +45,15 @@ export const TickerItem = ({ tickerItem, watchList, setWatchList }) => {
     },
     [watchList, setWatchList, isAdded, setIsAdded]
   );
+  const wrapperClass = classNames(
+    "w-full flex items-ceter justify-between gap-24 border-t border-t-slate-200 border-b border-b-slate-200 py-2.5 pr-5 hover:bg-slate-100 cursor-pointer",
+    {
+      "bg-slate-100": activeTicket === ticker,
+    }
+  );
 
   return (
-    <div className="w-full flex items-ceter justify-between gap-24 border-t border-t-slate-200 border-b border-b-slate-200 py-2.5 pr-5 hover:bg-slate-100 cursor-pointer">
+    <div className={wrapperClass} onMouseEnter={() => setActiveTicket(ticker)} onMouseLeave={() => setActiveTicket("")}>
       <div className="flex gap-2.5 items-center">
         <TickerBadge tickerName={ticker} />
         <p className="font-medium">{getTickerName(ticker)}</p>
@@ -64,4 +77,6 @@ TickerItem.propTypes = {
   tickerItem: PropTypes.object,
   setWatchList: PropTypes.func,
   watchList: PropTypes.array,
+  activeTicket: PropTypes.string,
+  setActiveTicket: PropTypes.func,
 };

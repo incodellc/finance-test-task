@@ -23,12 +23,16 @@ function App() {
 
   return (
     tickers.length > 0 && (
-      <div className="container w-fit mx-auto h-screen flex flex-col justify-center gap-12 justify-center">
+      <div className="container w-fit mx-auto h-screen flex mt-5 justify-center gap-12 justify-center mb-20">
         <div className="flex flex-col gap-2 items-start">
           <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
-          <TickersList tickers={tickers} watchList={watchTickers} setWatchList={setWatchTickers} />
+          <TickersList
+            tickers={tickers}
+            watchList={watchTickers}
+            setWatchList={setWatchTickers}
+          />
         </div>
-        <WatchingList watchTickers={watchTickers} />
+        <WatchingList watchTickers={watchTickers} tickers={tickers} setWatchTickers={setWatchTickers} />
       </div>
     )
   );

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
+import { WatchingItem } from "../watching-item";
 
-export const WatchingList = ({ watchTickers }) => {
-  console.log(watchTickers);
+export const WatchingList = ({ watchTickers, tickers, setWatchTickers }) => {
   return (
     <div className="flex flex-col items-start gap-4">
       <p className="font-medium">Watching list</p>
@@ -11,7 +11,7 @@ export const WatchingList = ({ watchTickers }) => {
             There will be tickers that you are watching
           </p>
         ) : (
-          watchTickers.map(({ ticker }) => <p key={ticker}>{ticker}</p>)
+          watchTickers.map(ticker => <WatchingItem key={ticker.ticker} tickerItem={ticker} setWatchTickers={setWatchTickers} tickers={tickers} watchTickers={watchTickers} />)
         )}
       </div>
     </div>
@@ -20,4 +20,6 @@ export const WatchingList = ({ watchTickers }) => {
 
 WatchingList.propTypes = {
   watchTickers: PropTypes.array,
+  tickers: PropTypes.array,
+  setWatchTickers: PropTypes.func,
 };

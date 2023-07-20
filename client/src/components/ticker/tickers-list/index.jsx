@@ -7,6 +7,8 @@ export const TickersList = ({
   watchList,
   activeTicket,
   setActiveTicker,
+  unwatchedTickers,
+  setUnwatchedTickers,
 }) => {
   return (
     <div className="flex flex-col">
@@ -18,6 +20,8 @@ export const TickersList = ({
           watchList={watchList}
           activeTicket={activeTicket}
           setActiveTicket={setActiveTicker}
+          unwatchedTickers={unwatchedTickers}
+          setUnwatchedTickers={setUnwatchedTickers}
         />
       ))}
     </div>
@@ -30,4 +34,6 @@ TickersList.propTypes = {
   watchList: PropTypes.array,
   activeTicket: PropTypes.string,
   setActiveTicker: PropTypes.func,
+  unwatchedTickers: PropTypes.array,
+  setUnwatchedTickers: PropTypes.func,
 };

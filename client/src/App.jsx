@@ -13,6 +13,7 @@ function App() {
   const [watchTickers, setWatchTickers] = useState([]);
   const [activeTicket, setActiveTicket] = useState("");
   const [unwatchedTickers, setUnwatchedTickers] = useState([]);
+  const [visibleTickers, setVisibleTickers] = useState([]);
 
   useEffect(() => {
     const socket = io.connect("http://localhost:4000");
@@ -23,6 +24,10 @@ function App() {
     });
   }, [dispatch]);
 
+  useEffect(() => {
+    setVisibleTickers(tickers);
+  }, [tickers]);
+
   return (
     tickers.length > 0 && (
       <div className="container w-fit mx-auto h-screen flex mt-5 justify-center gap-12 justify-center mb-20">
@@ -31,7 +36,7 @@ function App() {
             <div className="flex flex-col gap-2 items-start">
               <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
               <TickersList
-                tickers={tickers.filter(
+                tickers={visibleTickers.filter(
                   ({ ticker }) => !unwatchedTickers.includes(ticker)
                 )}
                 watchList={watchTickers}
@@ -63,13 +68,16 @@ function App() {
             </div>
           )}
         </div>
-        <WatchingList
-          watchTickers={watchTickers}
-          tickers={tickers}
-          setWatchTickers={setWatchTickers}
-          activeTicket={activeTicket}
-          setActiveTicket={setActiveTicket}
-        />
+
+        <div className="flex flex-col items-start gap-5">
+          <WatchingList
+            watchTickers={watchTickers}
+            tickers={tickers}
+            setWatchTickers={setWatchTickers}
+            activeTicket={activeTicket}
+            setActiveTicket={setActiveTicket}
+          />
+        </div>
       </div>
     )
   );

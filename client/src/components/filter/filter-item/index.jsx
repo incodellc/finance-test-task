@@ -5,7 +5,7 @@ import { useCallback } from "react";
 export const FilterItem = ({ setFilterBy, itemText, itemIcon, filterBy }) => {
   const buttonClasses = classNames(
     "border border-slate-200 p-1 flex gap-1 items-center hover:bg-slate-50 active:bg-slate-100 rounded-lg",
-    { "bg-slate-100": filterBy.includes(itemText) }
+    { "bg-slate-100": filterBy === itemText }
   );
 
   const spanClasses = classNames("material-symbols-outlined", {
@@ -16,9 +16,9 @@ export const FilterItem = ({ setFilterBy, itemText, itemIcon, filterBy }) => {
 
   const handleClick = useCallback(
     () =>
-      !filterBy.includes(itemText)
-        ? setFilterBy([...filterBy, itemText])
-        : setFilterBy(filterBy.filter((item) => item !== itemText)),
+      filterBy !== itemText
+        ? setFilterBy(itemText)
+        : setFilterBy(""),
     [itemText, filterBy]
   );
 
@@ -34,5 +34,5 @@ FilterItem.propTypes = {
   setFilterBy: PropTypes.func.isRequired,
   itemText: PropTypes.string.isRequired,
   itemIcon: PropTypes.string.isRequired,
-  filterBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterBy: PropTypes.string.isRequired,
 };

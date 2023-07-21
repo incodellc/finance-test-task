@@ -15,7 +15,7 @@ function App() {
   const [activeTicket, setActiveTicket] = useState("");
   const [unwatchedTickers, setUnwatchedTickers] = useState([]);
   const [visibleTickers, setVisibleTickers] = useState([]);
-  const [filterBy, setFilterBy] = useState([]);
+  const [filterBy, setFilterBy] = useState("");
 
   useEffect(() => {
     const socket = io.connect("http://localhost:4000");
@@ -27,8 +27,39 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    setVisibleTickers(tickers);
-  }, [tickers]);
+    if (filterBy) {
+      const tickersNow = [...tickers];
+
+      switch (filterBy) {
+      case "Gainers":
+        setVisibleTickers(
+          tickersNow.sort(
+            (obj1, obj2) =>
+              obj2.price - obj2.change - (obj1.price - obj1.change)
+          )
+        );
+        break;
+      case "Losers":
+        setVisibleTickers(
+          tickersNow.sort(
+            (obj1, obj2) =>
+              obj2.change - obj2.price - (obj1.change - obj1.price)
+          )
+        );
+        break;
+      case "Best dividends":
+        setVisibleTickers(
+          tickersNow.sort(
+            (obj1, obj2) =>
+              obj2.dividend - obj1.dividend
+          )
+        );
+        break;
+      }
+    } else {
+      setVisibleTickers(tickers);
+    }
+  }, [tickers, filterBy, visibleTickers]);
 
   return (
     tickers.length > 0 && (

@@ -20,13 +20,13 @@ export const FilterList = ({ setFilterBy, filterBy }) => {
       itemIcon: "monetization_on",
     },
   ];
-  const handleReset = useCallback(() => setFilterBy([]), []);
+  const handleReset = useCallback(() => setFilterBy(""), []);
 
   return (
     <div className="border border-slate-200 rounded-lg p-4 flex flex-col items-start gap-5 w-full">
       <div className="flex gap-10 items-center">
         <p className="font-medium">Filter by</p>
-        {filterBy.length > 0 && (
+        {filterBy && (
           <button
             className="text-red-500 border-transparent bg-white hover:text-red-600 active:text-red-700"
             onClick={handleReset}
@@ -52,5 +52,5 @@ export const FilterList = ({ setFilterBy, filterBy }) => {
 
 FilterList.propTypes = {
   setFilterBy: PropTypes.func.isRequired,
-  filterBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterBy: PropTypes.string.isRequired,
 };

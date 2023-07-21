@@ -6,6 +6,7 @@ import { TickersList } from "./components/ticker/tickers-list";
 
 import "./index.css";
 import { WatchingList } from "./components/watching tickers/watching-list";
+import { FilterList } from "./components/filter/filter-list";
 
 function App() {
   const dispatch = useDispatch();
@@ -13,6 +14,8 @@ function App() {
   const [watchTickers, setWatchTickers] = useState([]);
   const [activeTicket, setActiveTicket] = useState("");
   const [unwatchedTickers, setUnwatchedTickers] = useState([]);
+  const [visibleTickers, setVisibleTickers] = useState([]);
+  const [filterBy, setFilterBy] = useState("");
 
   useEffect(() => {
     const socket = io.connect("http://localhost:4000");
@@ -23,6 +26,41 @@ function App() {
     });
   }, [dispatch]);
 
+  useEffect(() => {
+    if (filterBy) {
+      const tickersNow = [...tickers];
+
+      switch (filterBy) {
+      case "Gainers":
+        setVisibleTickers(
+          tickersNow.sort(
+            (obj1, obj2) =>
+              obj2.price - obj2.change - (obj1.price - obj1.change)
+          )
+        );
+        break;
+      case "Losers":
+        setVisibleTickers(
+          tickersNow.sort(
+            (obj1, obj2) =>
+              obj2.change - obj2.price - (obj1.change - obj1.price)
+          )
+        );
+        break;
+      case "Best dividends":
+        setVisibleTickers(
+          tickersNow.sort(
+            (obj1, obj2) =>
+              obj2.dividend - obj1.dividend
+          )
+        );
+        break;
+      }
+    } else {
+      setVisibleTickers(tickers);
+    }
+  }, [tickers, filterBy, visibleTickers]);
+
   return (
     tickers.length > 0 && (
       <div className="container w-fit mx-auto h-screen flex mt-5 justify-center gap-12 justify-center mb-20">
@@ -31,7 +69,7 @@ function App() {
             <div className="flex flex-col gap-2 items-start">
               <h3 className="font-medium text-slate-700 text-sm">Popular:</h3>
               <TickersList
-                tickers={tickers.filter(
+                tickers={visibleTickers.filter(
                   ({ ticker }) => !unwatchedTickers.includes(ticker)
                 )}
                 watchList={watchTickers}
@@ -63,13 +101,17 @@ function App() {
             </div>
           )}
         </div>
-        <WatchingList
-          watchTickers={watchTickers}
-          tickers={tickers}
-          setWatchTickers={setWatchTickers}
-          activeTicket={activeTicket}
-          setActiveTicket={setActiveTicket}
-        />
+
+        <div className="flex flex-col items-start gap-5">
+          <WatchingList
+            watchTickers={watchTickers}
+            tickers={tickers}
+            setWatchTickers={setWatchTickers}
+            activeTicket={activeTicket}
+            setActiveTicket={setActiveTicket}
+          />
+          <FilterList filterBy={filterBy} setFilterBy={setFilterBy} />
+        </div>
       </div>
     )
   );

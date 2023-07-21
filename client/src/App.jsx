@@ -6,6 +6,7 @@ import { TickersList } from "./components/ticker/tickers-list";
 
 import "./index.css";
 import { WatchingList } from "./components/watching tickers/watching-list";
+import { FilterList } from "./components/filter/filter-list";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function App() {
   const [activeTicket, setActiveTicket] = useState("");
   const [unwatchedTickers, setUnwatchedTickers] = useState([]);
   const [visibleTickers, setVisibleTickers] = useState([]);
+  const [filterBy, setFilterBy] = useState([]);
 
   useEffect(() => {
     const socket = io.connect("http://localhost:4000");
@@ -77,6 +79,7 @@ function App() {
             activeTicket={activeTicket}
             setActiveTicket={setActiveTicket}
           />
+          <FilterList filterBy={filterBy} setFilterBy={setFilterBy} />
         </div>
       </div>
     )

@@ -1,0 +1,41 @@
+.contact_main {
+  display: flex;
+}
+
+.contact_item {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  transition: all .5s;
+}
+
+.contact-ava {
+  width: 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+}
+
+.contact_icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.contact_info {
+  margin: 10px 0;
+}
+
+.contact_link {
+  color: rgb(134, 134, 134);
+  text-decoration: none;
+}
+
+.contact_link:hover {
+  color: #333;
+}
+
+.my-text {
+  font-size: 1.5rem;
+}

@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-// import io from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadStock } from '../actions/actions';
 import { fetchTickers } from '../thunk/tickers';
 
 import Table from '@mui/material/Table';
@@ -16,12 +14,8 @@ export default function Stock() {
   const dispatch = useDispatch();
   const { stock } = useSelector((store) => store.stockReducer);
 
-  // const socket = io('http://localhost:4000');
-  // socket.emit('start');
   useEffect(() => {
-    // socket.on('ticker', (data) => {
     dispatch(fetchTickers());
-    // });
   }, [dispatch]);
 
   return (

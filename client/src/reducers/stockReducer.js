@@ -13,15 +13,15 @@ export const stockReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_STOCK:
       if (state.stock.length) {
-        const newStock = [...action.payload.stock];
-        const oldStock = [...state.stock];
+        const newStock = action.payload.stock;
+        const oldStock = state.stock;
         const resultStock = newStock.map((stock) => {
           const matchedData = oldStock.find((el) => stock.ticker === el.ticker);
           const color =
             matchedData.price > stock.price
               ? 'rgb(165,14,14)'
               : 'rgb(19,115,51)';
-          return { ...stock, ...matchedData, color };
+          return { ...stock, color };
         });
         return { ...state, stock: [...resultStock] };
       } else {

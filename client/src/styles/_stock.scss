@@ -1,0 +1,21 @@
+.tableContainer {
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.MuiTableRow-root th {
+  font-weight: 800;
+}
+
+tbody .MuiTableRow-root {
+  cursor: pointer;
+}
+
+tbody .MuiTableRow-root:hover {
+  background-color: #f8f9fa;
+}
+
+.css-1ji9ad4-MuiSvgIcon-root:hover {
+  color: rgb(26, 115, 232);
+}

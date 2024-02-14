@@ -1,4 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Catalog } from "./components/catalog/Catalog";
+import { SavedTickers } from "./components/saved/SavedTickers";
 
 function App() {
   return (
@@ -6,13 +8,15 @@ function App() {
       <div className="mt-6">
         <Tabs defaultValue="account" className="w-[400px]">
           <TabsList>
-            <TabsTrigger value="account">Catalog</TabsTrigger>
-            <TabsTrigger value="password">Saved</TabsTrigger>
+            <TabsTrigger value="catalog">Catalog</TabsTrigger>
+            <TabsTrigger value="saved">Saved</TabsTrigger>
           </TabsList>
-          <TabsContent value="account">
-            Make changes to your account here.
+          <TabsContent value="catalog">
+            <Catalog />
           </TabsContent>
-          <TabsContent value="password">Change your password here.</TabsContent>
+          <TabsContent value="saved">
+            <SavedTickers />
+          </TabsContent>
         </Tabs>
       </div>
     </>

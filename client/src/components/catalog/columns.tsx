@@ -4,19 +4,37 @@ import { ColumnDef } from "@tanstack/react-table";
 export const columns: ColumnDef<TickerData>[] = [
   {
     accessorKey: "ticker",
-    header: "ticker",
+    header: "Ticker",
   },
   {
     accessorKey: "exchange",
-    header: "exchange",
+    header: "Exchange",
   },
   {
     accessorKey: "price",
-    header: "price",
+    header: () => <div className="text-right">Price</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("price"));
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount);
+
+      return <div className="text-right font-medium">{formatted}</div>;
+    },
   },
   {
     accessorKey: "change",
-    header: "change",
+    header: () => <div className="text-right">Change</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("change"));
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(amount);
+
+      return <div className="text-right font-medium">{formatted}</div>;
+    },
   },
   {
     accessorKey: "change_percent",

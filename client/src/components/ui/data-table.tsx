@@ -13,16 +13,33 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@radix-ui/react-context-menu";
+import { Button } from "./button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
+export interface DataTableAction {
+  label: string;
+  action: any;
+}
+
+export interface DataTableActions {
+  actions?: DataTableAction[];
+}
+
 export function DataTable<TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+  actions,
+}: DataTableProps<TData, TValue> & DataTableActions) {
   const table = useReactTable({
     data,
     columns,
@@ -59,7 +76,23 @@ export function DataTable<TData, TValue>({
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    <ContextMenu>
+                      <ContextMenuTrigger>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </ContextMenuTrigger>
+                      <ContextMenuContent>
+                        {actions?.map((action) => (
+                          <ContextMenuItem key={action.label}>
+                            <Button onClick={action.action(row.original)}>
+                              {action.label}
+                            </Button>
+                          </ContextMenuItem>
+                        ))}
+                      </ContextMenuContent>
+                    </ContextMenu>
                   </TableCell>
                 ))}
               </TableRow>

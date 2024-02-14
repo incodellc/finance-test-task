@@ -1,9 +1,11 @@
+import { TickerData } from "@/types/ticker";
 import { createSlice } from "@reduxjs/toolkit";
 
 const tickersSlice = createSlice({
   name: "tickers",
   initialState: {
-    tickers: new Array<string>(),
+    tickers: new Array<TickerData>(),
+    hideTicker: new Array<TickerData>(),
   },
   reducers: {
     addTicker: (state, action) => {

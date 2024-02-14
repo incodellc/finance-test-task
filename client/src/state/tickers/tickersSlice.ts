@@ -5,7 +5,7 @@ const tickersSlice = createSlice({
   name: "tickers",
   initialState: {
     tickers: new Array<TickerData>(),
-    hideTicker: new Array<TickerData>(),
+    hideTickers: new Array<TickerData>(),
   },
   reducers: {
     addTicker: (state, action) => {
@@ -14,11 +14,22 @@ const tickersSlice = createSlice({
 
     removeTicker: (state, action) => {
       state.tickers = state.tickers.filter(
-        (ticker) => ticker !== action.payload
+        (ticker) => ticker.ticker !== action.payload.ticker
+      );
+    },
+
+    hideTicker: (state, action) => {
+      state.hideTickers.push(action.payload);
+    },
+
+    showTicker: (state, action) => {
+      state.hideTickers = state.hideTickers.filter(
+        (ticker) => ticker.ticker !== action.payload.ticker
       );
     },
   },
 });
 
-export const { addTicker, removeTicker } = tickersSlice.actions;
+export const { addTicker, removeTicker, hideTicker, showTicker } =
+  tickersSlice.actions;
 export default tickersSlice.reducer;

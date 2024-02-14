@@ -6,12 +6,11 @@ function App() {
   return (
     <>
       <div className="mt-6 flex justify-center">
-        <Tabs
-          defaultValue="account"
-          className="w-[400px] flex flex-col justify-center"
-        >
-          <TabsList>
-            <TabsTrigger value="catalog">Catalog</TabsTrigger>
+        <Tabs defaultValue="account" className="flex flex-col justify-center">
+          <TabsList className="w-fit m-[0_auto]">
+            <TabsTrigger value="catalog" autoFocus={true}>
+              Catalog
+            </TabsTrigger>
             <TabsTrigger value="saved">Saved</TabsTrigger>
           </TabsList>
           <TabsContent value="catalog">

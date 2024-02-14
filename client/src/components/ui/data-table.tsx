@@ -86,7 +86,10 @@ export function DataTable<TData, TValue>({
                       <ContextMenuContent>
                         {actions?.map((action) => (
                           <ContextMenuItem key={action.label}>
-                            <Button onClick={action.action(row.original)}>
+                            <Button
+                              className="mt-5 w-24"
+                              onClick={action.action(row.original)}
+                            >
                               {action.label}
                             </Button>
                           </ContextMenuItem>

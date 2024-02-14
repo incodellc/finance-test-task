@@ -32,7 +32,9 @@ export const Catalog = () => {
   };
 
   let tickers = allTickers.filter(
-    (ticker) => !hideedTickers.some((hideed) => hideed.ticker === ticker.ticker)
+    (ticker) =>
+      !hideedTickers.some((hideed) => hideed.ticker === ticker.ticker) &&
+      !savedTickers.some((saved) => saved.ticker === ticker.ticker)
   );
 
   return (

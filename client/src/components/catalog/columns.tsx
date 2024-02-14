@@ -38,18 +38,18 @@ export const columns: ColumnDef<TickerData>[] = [
   },
   {
     accessorKey: "change_percent",
-    header: "change_percent",
+    header: "Change Percent",
   },
   {
     accessorKey: "dividend",
-    header: "dividend",
+    header: "Dividend",
   },
   {
     accessorKey: "yield",
-    header: "yield",
+    header: "Yield",
   },
   {
     accessorKey: "last_trade_time",
-    header: "last_trade_time",
+    header: "Last Trade Time",
   },
 ];

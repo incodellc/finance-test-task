@@ -1,7 +1,15 @@
-import "./App.scss";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { Tickers } from "./components/Tickers";
 
 const App = () => {
-  return <div className="App">App</div>;
+  return (
+    <>
+      <Header />
+      <Tickers />
+      <Footer />
+    </>
+  );
 };
 
 export default App;

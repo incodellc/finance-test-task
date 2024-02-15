@@ -1,18 +1,11 @@
-import { useCatalog } from "@/hooks/useCatalog";
-import { columns } from "../catalog/columns";
+import { columns } from "./columns";
 import { DataTable, DataTableActions } from "../ui/data-table";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/state/store";
+import { useDispatch } from "react-redux";
 import { removeTicker } from "@/state/tickers/tickersSlice";
+import { useSaved } from "@/hooks/useSaved";
 
 export const SavedTickers = () => {
-  const catalogTickers = useCatalog();
-  const savedTickers = useSelector((state: RootState) => state.tickers.tickers);
-
-  const tickers = catalogTickers.filter((ticker) =>
-    savedTickers.some((savedTicker) => savedTicker.ticker === ticker.ticker)
-  );
-
+  const tickers = useSaved();
   const dispatch = useDispatch();
 
   const actions: DataTableActions = {

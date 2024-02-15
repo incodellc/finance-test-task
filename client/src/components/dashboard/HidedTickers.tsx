@@ -1,18 +1,12 @@
-import { useCatalog } from "@/hooks/useCatalog";
 import { DataTable, DataTableActions } from "@/components/ui/data-table";
 import { columns } from "./columns";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTicker, hideTicker } from "@/state/tickers/tickersSlice";
-import { RootState } from "@/state/store";
+import { useHided } from "@/hooks/useHided";
 
-export const Catalog = () => {
-  const allTickers = useCatalog();
+export const HidedTickers = () => {
+  const tickers = useHided();
   const dispatch = useDispatch();
-  const hideedTickers = useSelector(
-    (state: RootState) => state.tickers.hideTickers
-  );
-
-  const savedTickers = useSelector((state: RootState) => state.tickers.tickers);
 
   const actions: DataTableActions = {
     actions: [
@@ -30,12 +24,6 @@ export const Catalog = () => {
       },
     ],
   };
-
-  let tickers = allTickers.filter(
-    (ticker) =>
-      !hideedTickers.some((hideed) => hideed.ticker === ticker.ticker) &&
-      !savedTickers.some((saved) => saved.ticker === ticker.ticker)
-  );
 
   return (
     <div className="container mx-auto py-10">
